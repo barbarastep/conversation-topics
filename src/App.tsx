@@ -7,9 +7,22 @@ import type { Category, Language, Tab } from './types'
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  const [language, setLanguage] = useState<Language>('ru')
+  const [language, setLanguage] = useState<Language>(() => {
+    const savedLanguage = localStorage.getItem('language')
+
+    return savedLanguage === 'en' || savedLanguage === 'ru' ? savedLanguage : 'ru'
+  })
   const [activeTab, setActiveTab] = useState<Tab>('home')
-  const [selectedCategory, setSelectedCategory] = useState<Category>('all')
+  const [selectedCategory, setSelectedCategory] = useState<Category>(() => {
+    const savedCategory = localStorage.getItem('category')
+
+    return savedCategory === 'all'
+      || savedCategory === 'parents'
+      || savedCategory === 'friends'
+      || savedCategory === 'self'
+      ? savedCategory
+      : 'all'
+  })
 
   const selectedCategoryLabel = selectedCategory === 'all'
     ? null
@@ -35,11 +48,15 @@ function App() {
   }
 
   function handleLanguageChange() {
-    setLanguage(language === 'ru' ? 'en' : 'ru')
+    const nextLanguage = language === 'ru' ? 'en' : 'ru'
+
+    setLanguage(nextLanguage)
+    localStorage.setItem('language', nextLanguage)
   }
 
   function handleCategoryChange(category: Category) {
     setSelectedCategory(category)
+    localStorage.setItem('category', category)
     setCurrentQuestionIndex(0)
     setActiveTab('home')
   }
