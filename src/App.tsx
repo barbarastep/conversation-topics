@@ -1,4 +1,11 @@
 import { useState } from 'react'
+import {
+  ArrowRightIcon,
+  CategoriesIcon,
+  GlobeIcon,
+  HomeIcon,
+  RefreshIcon,
+} from './icons'
 import { questions } from './questions'
 import { categoryLabels, categoryOptions, navigationLabels } from './labels'
 import type { Category, Language, Tab } from './types'
@@ -76,7 +83,7 @@ function App() {
           language === 'ru' ? 'Switch to English' : 'Переключить на русский'
         }
       >
-        🌐
+        <GlobeIcon className="language-icon" />
       </button>
 
       {activeTab === 'home' ? (
@@ -101,7 +108,9 @@ function App() {
               onClick={() => handleCategoryChange(category)}
             >
               {categoryLabels[language][category]}
-              <span aria-hidden="true">›</span>
+              <span aria-hidden="true">
+                <ArrowRightIcon className="category-icon" />
+              </span>
             </button>
           ))}
         </section>
@@ -113,6 +122,7 @@ function App() {
           className={`nav-button ${activeTab === 'home' ? 'nav-button-active' : ''}`}
           onClick={() => setActiveTab('home')}
         >
+          <HomeIcon className="nav-icon" />
           {navigationLabels[language].home}
         </button>
         <button
@@ -121,6 +131,7 @@ function App() {
           onClick={handleRefresh}
           disabled={activeTab !== 'home'}
         >
+          <RefreshIcon className="nav-icon" />
           {navigationLabels[language].refresh}
         </button>
         <button
@@ -128,6 +139,7 @@ function App() {
           className={`nav-button ${activeTab === 'categories' ? 'nav-button-active' : ''}`}
           onClick={() => setActiveTab('categories')}
         >
+          <CategoriesIcon className="nav-icon" />
           {navigationLabels[language].categories}
         </button>
       </nav>

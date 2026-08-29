@@ -1,0 +1,5 @@
+export { ArrowRightIcon } from './ArrowRightIcon'
+export { CategoriesIcon } from './CategoriesIcon'
+export { GlobeIcon } from './GlobeIcon'
+export { HomeIcon } from './HomeIcon'
+export { RefreshIcon } from './RefreshIcon'
