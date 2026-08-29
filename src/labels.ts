@@ -1,19 +1,23 @@
-export const categoryLabels = {
+import type { Category, Language, NavigationItem } from './types'
+
+export const categoryOptions: Category[] = ['all', 'parents', 'friends', 'self']
+
+export const categoryLabels: Record<Language, Record<Category, string>> = {
   ru: {
-    allTopics: 'Все темы',
+    all: 'Все темы',
     parents: 'С родителями',
     friends: 'С друзьями',
     self: 'Самоанализ',
   },
   en: {
-    allTopics: 'All topics',
+    all: 'All topics',
     parents: 'With parents',
     friends: 'With friends',
     self: 'Self-reflection',
   }
 }
 
-export const uiLabels = {
+export const navigationLabels: Record<Language, Record<NavigationItem, string>> = {
   ru: {
     home: 'Главная',
     refresh: 'Обновить',
