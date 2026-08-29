@@ -21,15 +21,20 @@ function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [language, setLanguage] = useState<Language>(getInitialLanguage)
   const [activeTab, setActiveTab] = useState<Tab>('home')
-  const [selectedCategory, setSelectedCategory] = useState<Category>(getInitialCategory)
+  const [selectedCategory, setSelectedCategory] =
+    useState<Category>(getInitialCategory)
 
-  const selectedCategoryLabel = selectedCategory === 'all'
-    ? null
-    : categoryLabels[language][selectedCategory]
+  const selectedCategoryLabel =
+    selectedCategory === 'all'
+      ? null
+      : categoryLabels[language][selectedCategory]
 
-  const filteredQuestions = selectedCategory === 'all'
-    ? questions
-    : questions.filter((question) => question.category.includes(selectedCategory))
+  const filteredQuestions =
+    selectedCategory === 'all'
+      ? questions
+      : questions.filter((question) =>
+          question.category.includes(selectedCategory),
+        )
 
   const currentQuestion = filteredQuestions[currentQuestionIndex]
 
@@ -63,10 +68,12 @@ function App() {
   return (
     <main className="App">
       <button
-          className="language-button"
-          type="button"
-          onClick={handleLanguageChange}
-          aria-label={language === 'ru' ? 'Switch to English' : 'Переключить на русский'}
+        className="language-button"
+        type="button"
+        onClick={handleLanguageChange}
+        aria-label={
+          language === 'ru' ? 'Switch to English' : 'Переключить на русский'
+        }
       >
         🌐
       </button>
@@ -74,17 +81,13 @@ function App() {
       {activeTab === 'home' ? (
         <section className="question-card">
           {selectedCategoryLabel && (
-            <p className="category-label">
-              {selectedCategoryLabel}
-            </p>
+            <p className="category-label">{selectedCategoryLabel}</p>
           )}
 
           <h2 className="main-question">{currentQuestion.text[language]}</h2>
           <ul className="follow-up-list">
             {currentQuestion.followUps.map((followUp) => (
-              <li key={followUp[language]}>
-                {followUp[language]}
-              </li>
+              <li key={followUp[language]}>{followUp[language]}</li>
             ))}
           </ul>
         </section>

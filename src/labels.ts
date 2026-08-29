@@ -14,10 +14,13 @@ export const categoryLabels: Record<Language, Record<Category, string>> = {
     parents: 'With parents',
     friends: 'With friends',
     self: 'Self-reflection',
-  }
+  },
 }
 
-export const navigationLabels: Record<Language, Record<NavigationItem, string>> = {
+export const navigationLabels: Record<
+  Language,
+  Record<NavigationItem, string>
+> = {
   ru: {
     home: 'Главная',
     refresh: 'Обновить',
@@ -27,5 +30,5 @@ export const navigationLabels: Record<Language, Record<NavigationItem, string>> 
     home: 'Home',
     refresh: 'Refresh',
     categories: 'Categories',
-  }
+  },
 }
