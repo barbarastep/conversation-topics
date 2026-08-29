@@ -81,9 +81,10 @@ function App() {
 
       {activeTab === 'home' ? (
         <section className="question-card">
-          <p className="category-label">{selectedCategoryLabel}</p>
-
-          <h2 className="main-question">{currentQuestion.text[language]}</h2>
+          <div className="question-main-area">
+            <p className="category-label">{selectedCategoryLabel}</p>
+            <h1 className="main-question">{currentQuestion.text[language]}</h1>
+          </div>
           <ul className="follow-up-list">
             {currentQuestion.followUps.map((followUp) => (
               <li key={followUp[language]}>{followUp[language]}</li>
