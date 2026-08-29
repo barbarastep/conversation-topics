@@ -1,0 +1,8 @@
+:root {
+  --color-background: #fbf9f6;
+  --color-text: #050505;
+  --color-muted: #7d7b7a;
+
+  --font-question: Manrope, system-ui, sans-serif;
+  --font-ui: Inter, system-ui, sans-serif;
+}

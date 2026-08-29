@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import './App.css'
 import { questions } from './questions'
 import { categoryLabels, categoryOptions, navigationLabels } from './labels'
 import type { Category, Language, Tab } from './types'
+
+import './styles/index.css'
 
 function getInitialLanguage(): Language {
   const savedLanguage = localStorage.getItem('language')
@@ -80,9 +81,7 @@ function App() {
 
       {activeTab === 'home' ? (
         <section className="question-card">
-          {selectedCategoryLabel && (
-            <p className="category-label">{selectedCategoryLabel}</p>
-          )}
+          <p className="category-label">{selectedCategoryLabel}</p>
 
           <h2 className="main-question">{currentQuestion.text[language]}</h2>
           <ul className="follow-up-list">
