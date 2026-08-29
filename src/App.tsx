@@ -1,25 +1,15 @@
 import { useState } from 'react'
 import './App.css'
 import { questions } from './questions'
+import { categoryLabels, uiLabels } from './labels'
 
-const categoryLabels = {
-  ru: {
-    parents: 'С родителями',
-    friends: 'С друзьями',
-    self: 'Самоанализ',
-  },
-  en: {
-    parents: 'With parents',
-    friends: 'With friends',
-    self: 'Self-reflection',
-  }
-}
+import type { Category, Language, Tab } from './types'
 
 function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  const [language, setLanguage] = useState<'ru' | 'en'>('ru')
-  const [activeTab, setActiveTab] = useState<'home' | 'categories'>('home')
-  const [selectedCategory, setSelectedCategory] = useState<'all' | 'parents' | 'friends' | 'self'>('all')
+  const [language, setLanguage] = useState<Language>('ru')
+  const [activeTab, setActiveTab] = useState<Tab>('home')
+  const [selectedCategory, setSelectedCategory] = useState<Category>('all')
 
   const selectedCategoryLabel = selectedCategory === 'all'
     ? null
@@ -32,6 +22,9 @@ function App() {
   const currentQuestion = filteredQuestions[currentQuestionIndex]
 
   function handleRefresh() {
+    if (filteredQuestions.length <= 1) {
+      return
+    }
     let nextQuestionIndex = Math.floor(Math.random() * filteredQuestions.length)
 
     while (nextQuestionIndex === currentQuestionIndex) {
@@ -45,7 +38,7 @@ function App() {
     setLanguage(language === 'ru' ? 'en' : 'ru')
   }
 
-  function handleCategoryChange(category: 'all' | 'parents' | 'friends' | 'self') {
+  function handleCategoryChange(category: Category) {
     setSelectedCategory(category)
     setCurrentQuestionIndex(0)
     setActiveTab('home')
@@ -82,16 +75,16 @@ function App() {
       ) : (
         <section className="categories-panel">
           <button type="button" onClick={() => handleCategoryChange('all')}>
-            Все темы
+            {categoryLabels[language].allTopics}
           </button>
           <button type="button" onClick={() => handleCategoryChange('parents')}>
-            С родителями
+            {categoryLabels[language].parents}
           </button>
           <button type="button" onClick={() => handleCategoryChange('friends')}>
-            С друзьями
+            {categoryLabels[language].friends}
           </button>
           <button type="button" onClick={() => handleCategoryChange('self')}>
-            Самоанализ
+            {categoryLabels[language].self}
           </button>
         </section>
       )}
@@ -102,7 +95,7 @@ function App() {
             className={`nav-button ${activeTab === 'home' ? 'nav-button-active' : ''}`}
             onClick={() => setActiveTab('home')}
           >
-            Главная
+            {uiLabels[language].home}
           </button>
           <button
             type="button"
@@ -110,14 +103,14 @@ function App() {
             onClick={handleRefresh}
             disabled={activeTab !== 'home'}
           >
-            Обновить
+            {uiLabels[language].refresh}
           </button>
           <button
             type="button"
             className={`nav-button ${activeTab === 'categories' ? 'nav-button-active' : ''}`}
             onClick={() => setActiveTab('categories')}
           >
-            Категории
+            {uiLabels[language].categories}
           </button>
       </nav>
     </main>

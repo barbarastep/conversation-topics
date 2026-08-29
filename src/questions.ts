@@ -1,16 +1,4 @@
-type LocalizedText = {
-  ru: string
-  en: string
-}
-
-type Category = "parents" | "friends" | "self"
-
-type Question = {
-  id: number
-  text: LocalizedText
-  category: Category[]
-  followUps: LocalizedText[]
-}
+import type { Question } from './types'
 
 export const questions: Question[] = [
   {
