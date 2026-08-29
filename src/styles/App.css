@@ -111,3 +111,34 @@ body {
   color: var(--color-muted);
   cursor: default;
 }
+
+.categories-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px 120px;
+  width: min(1150px, 100%);
+  margin: 0 auto;
+  padding-top: 29vh;
+}
+
+.category-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 96px;
+  padding: 0 32px;
+  border: 2px solid var(--color-muted);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-question);
+  font-size: 28px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.category-button span {
+  color: var(--color-muted);
+  font-size: 48px;
+  line-height: 1;
+}
